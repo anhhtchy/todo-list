@@ -1,4 +1,5 @@
 import { Component, EventEmitter, OnInit, Output } from '@angular/core';
+import { TaskService } from '../task.service';
 
 @Component({
   selector: 'app-header',
@@ -7,14 +8,13 @@ import { Component, EventEmitter, OnInit, Output } from '@angular/core';
 })
 export class HeaderComponent implements OnInit {
   title = "My To Do List"
-  @Output() onAddTask = new EventEmitter();
-
-  constructor() { }
+  
+  constructor(private taskService: TaskService) { }
 
   ngOnInit(): void {
   }
 
   addTask(inputTask: any): void {
-    this.onAddTask.emit(inputTask);
+    this.taskService.addTask(inputTask);
   }
 }
